@@ -4,11 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
-
+import com.github.cliftonlabs.json_simple.*;
 public class SectionDAO {
     
     // INSERT YOUR CODE HERE
-    
+     String query = "SELECT * FROM section WHERE termid = ? AND subjectid = ? AND num = ? ORDER BY crn";
     private final DAOFactory daoFactory;
     
     SectionDAO(DAOFactory daoFactory) {
@@ -30,7 +30,16 @@ public class SectionDAO {
             if (conn.isValid(0)) {
                 
                 // INSERT YOUR CODE HERE
-                
+                 ps = conn.prepareStatement(query);
+                ps.setInt(1, termid);
+                ps.setString(2, subjectid);
+                ps.setString(3, num);
+                 boolean hasresults = ps.execute();
+                if (hasresults) {
+                       rs = ps.getResultSet();
+                    result = DAOUtility.getResultSetAsJson(rs);
+                    
+                }
             }
             
         }

@@ -17,7 +17,25 @@ public class DAOUtility {
             if (rs != null) {
 
                 // INSERT YOUR CODE HERE
-
+                 ResultSetMetaData metaData = rs.getMetaData();
+                int numColumns = metaData.getColumnCount();
+                    while (rs.next()) {
+                    JsonObject record = new JsonObject();
+                     for (int i = 1; i <= numColumns; i++) {
+                        String columnName = metaData.getColumnName(i);
+                        Object columnValue = rs.getObject(i);
+                        int columnType = metaData.getColumnType(i);
+                         if (columnType == Types.TIME) {
+                             Time timeValue = (Time) columnValue;
+                            record.put(columnName.toLowerCase(), timeValue.toString());
+                             }
+                        else {
+                             String columnStringValue = columnValue != null ? columnValue.toString() : "";
+                            record.put(columnName.toLowerCase(), columnStringValue);
+                            }
+                        }
+                    records.add(record);
+                    }
             }
             
         }
