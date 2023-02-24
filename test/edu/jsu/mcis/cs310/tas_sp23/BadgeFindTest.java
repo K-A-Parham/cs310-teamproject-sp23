@@ -13,6 +13,7 @@ public class BadgeFindTest {
     public void setup() {
 
         daoFactory = new DAOFactory("tas.jdbc");
+        
 
     }
 
