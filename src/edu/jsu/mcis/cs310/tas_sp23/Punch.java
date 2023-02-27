@@ -51,6 +51,20 @@ public class Punch {
         return originaltimestamp;
     }
     
-    
+    public String printOriginal () {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        String dateText = originaltimestamp.format(formatter);
+
+        formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        String timeText = originaltimestamp.format(formatter);
+
+        String dayOfWeek = originaltimestamp.getDayOfWeek().toString().substring(0, 3).toUpperCase();
+
+        StringBuilder s = new StringBuilder();        
+        s.append("#").append(badge.getId()).append(" ");
+        s.append(punchtype).append(": ").append(dayOfWeek).append(" ").append(dateText).append(" ").append(timeText);
+
+        return s.toString();
+    }
     
 } 
