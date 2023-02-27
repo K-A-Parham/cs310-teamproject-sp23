@@ -5,6 +5,7 @@
 package edu.jsu.mcis.cs310.tas_sp23;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 
 public class Punch {
@@ -49,4 +50,21 @@ public class Punch {
     public LocalDateTime getOriginaltimestamp() {
         return originaltimestamp;
     }
+    
+    public String printOriginal () {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        String dateText = originaltimestamp.format(formatter);
+
+        formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        String timeText = originaltimestamp.format(formatter);
+
+        String dayOfWeek = originaltimestamp.getDayOfWeek().toString().substring(0, 3).toUpperCase();
+
+        StringBuilder s = new StringBuilder();        
+        s.append("#").append(badge.getId()).append(" ");
+        s.append(punchtype).append(": ").append(dayOfWeek).append(" ").append(dateText).append(" ").append(timeText);
+
+        return s.toString();
+    }
+    
 } 
