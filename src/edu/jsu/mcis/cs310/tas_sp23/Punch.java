@@ -65,7 +65,6 @@ public class Punch {
         s.append(punchtype).append(": ").append(dayOfWeek).append(" ").append(dateText).append(" ").append(timeText);
 
         return s.toString();
-
     }
     
 } 
