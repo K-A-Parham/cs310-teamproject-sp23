@@ -49,4 +49,12 @@ public class Punch {
     public LocalDateTime getOriginaltimestamp() {
         return originaltimestamp;
     }
+    
+    public LocalDateTime getadjustedtimestamp(){
+        return adjustedtimestamp;
+    }
+    
+    public PunchAdjustmentType getadjustmenttype(){
+        return adjustmenttype;
+    }
 } 
