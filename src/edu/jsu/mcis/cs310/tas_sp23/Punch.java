@@ -23,11 +23,30 @@ public class Punch {
     }
 
     // Constructor for existing punches
-    public void Punch(Integer id, int terminalid, Badge badge, LocalDateTime originaltimestamp, EventType punchtype) {
+    public Punch(Integer id, int terminalid, Badge badge, LocalDateTime originaltimestamp, EventType punchtype) {
         this.id = id;
         this.terminalid = terminalid;
         this.badge = badge;
         this.originaltimestamp = originaltimestamp;
         this.punchtype = punchtype;
+    }
+    public int getId() {
+        return id;
+    }
+
+    public int getTerminalid() {
+        return terminalid;
+    }
+
+    public Badge getBadge() {
+        return badge;
+    }
+
+    public EventType getPunchtype() {
+        return punchtype;
+    }
+
+    public LocalDateTime getOriginaltimestamp() {
+        return originaltimestamp;
     }
 } 
