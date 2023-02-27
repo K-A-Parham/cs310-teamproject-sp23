@@ -71,4 +71,15 @@ public class ShiftDAO {
         return shift;
     }
     
+    public Shift find(Badge badge) {
+        
+        Shift shift = null;
+        
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        
+        
+        
+        return shift;
+    }
 }
