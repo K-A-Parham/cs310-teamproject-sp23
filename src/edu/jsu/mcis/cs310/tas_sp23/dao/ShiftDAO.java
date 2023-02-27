@@ -1,6 +1,6 @@
 package edu.jsu.mcis.cs310.tas_sp23.dao;
 
-import edu.jsu.mcis.cs310.tas_sp23.Badge;
+
 import edu.jsu.mcis.cs310.tas_sp23.Shift;
 import java.sql.*;
 
@@ -71,4 +71,15 @@ public class ShiftDAO {
         return shift;
     }
     
+    public Shift find(Badge badge) {
+        
+        Shift shift = null;
+        
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        
+        
+        
+        return shift;
+    }
 }
