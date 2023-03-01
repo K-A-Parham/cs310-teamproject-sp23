@@ -1,21 +1,24 @@
 package edu.jsu.mcis.cs310.tas_sp23.dao;
+
 import edu.jsu.mcis.cs310.tas_sp23.Badge;
 import edu.jsu.mcis.cs310.tas_sp23.EventType;
 import edu.jsu.mcis.cs310.tas_sp23.Punch;
 import java.sql.*;
 import java.time.LocalDateTime;
+
 public class PunchDAO {
-   private static final String QUERY_FIND = "SELECT * FROM badge WHERE id = ?";
+
+    private static final String QUERY_FIND = "SELECT * FROM event WHERE id = ?";
 
     private final DAOFactory daoFactory;
 
     PunchDAO(DAOFactory daoFactory) {
-
-        this.daoFactory = daoFactory; 
+        this.daoFactory = daoFactory;
     }
     
     public Punch find(int id){
         Punch punch = null;
+
         PreparedStatement ps = null;
         ResultSet rs = null;
 
@@ -35,17 +38,30 @@ public class PunchDAO {
                     rs = ps.getResultSet();
 
                     while (rs.next()) {
+
+                        //Create badge variable. Use BadgeDAO to find it.
+
+                        BadgeDAO badgeDAO = new BadgeDAO(daoFactory);
                         String badgeId = rs.getString("badgeid");
-                        int terminalId = rs.getInt("terminalid");
-                        int eventType = rs.getInt("eventtypeid");
-                        LocalDateTime timestamp = rs.getTimestamp("timestamp").toLocalDateTime();
-                     // Using BadgeDAO to find the badge associated with this punch
-                        Badge badge = new BadgeDAO(daoFactory).find(badgeId);
+                        Badge badge = badgeDAO.find(badgeId);
 
-                     // Creating a new Punch object using the constructor that takes all the required parameters
-                        punch = new Punch(id, terminalId, badge, timestamp, EventType.values()[eventType]);
+                        //Get eventtype. punchtype
 
-                  
+                        int eventtypeid = rs.getInt("eventtypeid");
+                        EventType punchtype = EventType.values()[eventtypeid];
+
+                        int terminalid = rs.getInt("terminalid");
+
+                        //Get timestamp from database. It must be casted into LocalDateTime. 
+
+                        java.sql.Timestamp timestamp = new Timestamp(new java.util.Date().getTime());
+                        timestamp = rs.getTimestamp("timestamp");
+                        LocalDateTime originalTimeStamp = timestamp.toLocalDateTime();  
+
+                        //create punch variable.
+
+                        punch = new Punch(id, terminalid, badge, originalTimeStamp, punchtype);
+
                     }
 
                 }
@@ -79,5 +95,4 @@ public class PunchDAO {
 
     }
 
-   
-    
+}
