@@ -1,70 +1,45 @@
-package edu.jsu.mcis.cs310.tas_sp23.dao;
-
+import edu.jsu.mcis.cs310.tas_sp23.Badge;
+import edu.jsu.mcis.cs310.tas_sp23.EventType;
 import edu.jsu.mcis.cs310.tas_sp23.Punch;
+import edu.jsu.mcis.cs310.tas_sp23.PunchAdjustmentType;
 import java.sql.*;
+import java.time.LocalDateTime;
+
 public class PunchDAO {
-   private static final String QUERY_FIND = "SELECT * FROM badge WHERE id = ?";
+    private final Connection conn;
 
-    private final DAOFactory daoFactory;
-
-    PunchDAO(DAOFactory daoFactory) {
-
-        this.daoFactory = daoFactory; 
+    public PunchDAO(Connection conn) {
+        this.conn = conn;
     }
-    
-    public Punch find(String id){
-        Punch punch = null;
-        PreparedStatement ps = null;
+
+    public Punch find(int id) throws SQLException {
+        PreparedStatement stmt = null;
         ResultSet rs = null;
-
         try {
+            stmt = conn.prepareStatement("SELECT * FROM event WHERE id = ?");
+            stmt.setInt(1, id);
+            rs = stmt.executeQuery();
 
-            Connection conn = daoFactory.getConnection();
+            if (rs.next()) {
+                int terminalid = rs.getInt("terminalid");
+                Badge badge = new Badge(rs.getString("badgeid"));
+                LocalDateTime originaltimestamp = rs.getTimestamp("originaltimestamp").toLocalDateTime();
+                EventType punchtype = EventType.valueOf(rs.getString("eventtypeid"));
 
-            if (conn.isValid(0)) {
-
-                ps = conn.prepareStatement(QUERY_FIND);
-                ps.setString(1, id);
-
-                boolean hasresults = ps.execute();
-
-                if (hasresults) {
-
-                    rs = ps.getResultSet();
-
-                    while (rs.next()) {
-                  
-                    }
-
-                }
-
+                Punch punch = new Punch(id, terminalid, badge, originaltimestamp, punchtype);
+                punch.setAdjustedTimestamp(rs.getTimestamp("adjustedtimestamp").toLocalDateTime());
+                punch.setAdjustmentType(PunchAdjustmentType.valueOf(rs.getString("adjustmenttype")));
+                return punch;
+            } else {
+                return null;
             }
-
-        } catch (SQLException e) {
-
-            throw new DAOException(e.getMessage());
-
         } finally {
-
-            if (rs != null) {
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                    throw new DAOException(e.getMessage());
-                }
+            try {
+                if (rs != null) rs.close();
+                if (stmt != null) stmt.close();
+            } catch (SQLException e) {
+             
             }
-            if (ps != null) {
-                try {
-                    ps.close();
-                } catch (SQLException e) {
-                    throw new DAOException(e.getMessage());
-                }
-            }
-
         }
-
-        return punch;
-
     }
-   }
-    
+}

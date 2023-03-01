@@ -51,6 +51,15 @@ public class Punch {
         return originaltimestamp;
     }
     
+    public LocalDateTime getadjustedtimestamp(){
+        return adjustedtimestamp;
+    }
+    
+    public PunchAdjustmentType getadjustmenttype(){
+        PunchAdjustmentType PunchAdjustmentTypeadjustmenttype = null;
+        return PunchAdjustmentTypeadjustmenttype;
+    }
+    
     public String printOriginal () {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         String dateText = originaltimestamp.format(formatter);
@@ -65,6 +74,14 @@ public class Punch {
         s.append(punchtype).append(": ").append(dayOfWeek).append(" ").append(dateText).append(" ").append(timeText);
 
         return s.toString();
+    }
+
+    public void setAdjustedTimestamp(LocalDateTime toLocalDateTime) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public void setAdjustmentType(PunchAdjustmentType valueOf) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
 } 
