@@ -14,9 +14,8 @@ public class Punch {
     private final int terminalid;
     private final Badge badge;
     private LocalDateTime originaltimestamp;
-    private LocalDateTime adjustedtimestamp; // nullable
     private final EventType punchtype;
-    private PunchAdjustmentType adjustmenttype; // nullable
+    private PunchAdjustmentType adjustmenttype = null; // nullable
 
     // Constructor for new punches (no ID, original timestamp is current time)
     public Punch(int terminalid, Badge badge, EventType punchtype) {
@@ -53,13 +52,7 @@ public class Punch {
         return originaltimestamp;
     }
     
-    public LocalDateTime getadjustedtimestamp(){
-        return adjustedtimestamp;
-    }
     
-    public PunchAdjustmentType getadjustmenttype(){
-        return adjustmenttype;
-    }
     
     public String printOriginal () {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
