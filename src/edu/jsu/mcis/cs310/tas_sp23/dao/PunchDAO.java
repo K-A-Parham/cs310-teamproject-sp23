@@ -14,7 +14,7 @@ public class PunchDAO {
         this.daoFactory = daoFactory; 
     }
     
-    public Punch find(String id){
+    public Punch find(int id){
         Punch punch = null;
         PreparedStatement ps = null;
         ResultSet rs = null;

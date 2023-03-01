@@ -10,21 +10,23 @@ import java.time.format.DateTimeFormatter;
 
 public class Punch {
    
-    private Integer id; // nullable
-    private int terminalid;
-    private Badge badge;
+    private int id; // nullable
+    private final int terminalid;
+    private final Badge badge;
     private LocalDateTime originaltimestamp;
     private LocalDateTime adjustedtimestamp; // nullable
-    private EventType punchtype;
+    private final EventType punchtype;
     private PunchAdjustmentType adjustmenttype; // nullable
 
     // Constructor for new punches (no ID, original timestamp is current time)
     public Punch(int terminalid, Badge badge, EventType punchtype) {
-        this(null, terminalid, badge, LocalDateTime.now(), punchtype);
+         this.terminalid = terminalid;
+        this.badge = badge;
+        this.punchtype = punchtype;
     }
 
     // Constructor for existing punches
-    public Punch(Integer id, int terminalid, Badge badge, LocalDateTime originaltimestamp, EventType punchtype) {
+    public Punch(int id, int terminalid, Badge badge, LocalDateTime originaltimestamp, EventType punchtype) {
         this.id = id;
         this.terminalid = terminalid;
         this.badge = badge;
@@ -56,8 +58,7 @@ public class Punch {
     }
     
     public PunchAdjustmentType getadjustmenttype(){
-        PunchAdjustmentType PunchAdjustmentTypeadjustmenttype = null;
-        return PunchAdjustmentTypeadjustmenttype;
+        return adjustmenttype;
     }
     
     public String printOriginal () {
@@ -76,12 +77,6 @@ public class Punch {
         return s.toString();
     }
 
-    public void setAdjustedTimestamp(LocalDateTime toLocalDateTime) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    public void setAdjustmentType(PunchAdjustmentType valueOf) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+   
     
 } 
