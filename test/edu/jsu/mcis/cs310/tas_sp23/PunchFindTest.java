@@ -2,6 +2,7 @@ package edu.jsu.mcis.cs310.tas_sp23;
 
 import edu.jsu.mcis.cs310.tas_sp23.dao.DAOFactory;
 import edu.jsu.mcis.cs310.tas_sp23.dao.PunchDAO;
+import java.sql.SQLException;
 import org.junit.*;
 import static org.junit.Assert.*;
 
@@ -17,7 +18,7 @@ public class PunchFindTest {
     }
 
     @Test
-    public void testFindPunches1() {
+    public void testFindPunches1() throws SQLException {
 
         PunchDAO punchDAO = daoFactory.getPunchDAO();
 
@@ -36,7 +37,7 @@ public class PunchFindTest {
     }
 
     @Test
-    public void testFindPunches2() {
+    public void testFindPunches2() throws SQLException {
 
         PunchDAO punchDAO = daoFactory.getPunchDAO();
 
@@ -55,7 +56,7 @@ public class PunchFindTest {
     }
     
     @Test
-    public void testFindPunches3() {
+    public void testFindPunches3() throws SQLException {
 
         PunchDAO punchDAO = daoFactory.getPunchDAO();
 
