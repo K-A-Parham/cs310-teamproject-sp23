@@ -20,23 +20,21 @@ public final class DAOFactory {
         this.username = properties.getProperty(PROPERTY_USERNAME);
         this.password = properties.getProperty(PROPERTY_PASSWORD);
 
+       
         try {
             conn = DriverManager.getConnection(url, username, password);
         } catch (SQLException e) {
             throw new DAOException(e.getMessage());
         }
-
     }
-
     Connection getConnection() {
         return conn;
     }
-
     public BadgeDAO getBadgeDAO() {
         return new BadgeDAO(this);
     }
-    
-     public PunchDAO getPunchDAO() {
+
+    public PunchDAO getPunchDAO() {
         return new PunchDAO(this);
     }
     
@@ -48,4 +46,7 @@ public final class DAOFactory {
         return new DepartmentDAO(this);
     }
 
+    public DepartmentDAO getDepartmentDAO() {
+        return new DepartmentDAO(this);
+    }
 }
