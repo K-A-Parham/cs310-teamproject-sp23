@@ -25,11 +25,11 @@ public class Department {
     
     @Override
     public String toString(){
-        StringBuilder w = new StringBuilder();
+        StringBuilder stringbuilder = new StringBuilder();
         
-        w.append('#').append(id).append(' ');
-        w.append('(').append(description).append(')');
-        w.append(", Terminal ID: ").append(terminalid);
-        return w.toString();
+        stringbuilder.append('#').append(id).append(' ');
+        stringbuilder.append('(').append(description).append(')');
+        stringbuilder.append(", Terminal ID: ").append(terminalid);
+        return stringbuilder.toString();
     }
 }
