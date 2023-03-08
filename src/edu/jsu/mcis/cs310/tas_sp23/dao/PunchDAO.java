@@ -61,7 +61,9 @@ public class PunchDAO {
                         //create punch variable.
 
                         punch = new Punch(id, terminalid, badge, originalTimeStamp, punchtype);
-
+                        
+                        //create method
+                        
                     }
 
                 }
