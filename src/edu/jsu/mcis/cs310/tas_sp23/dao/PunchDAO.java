@@ -98,3 +98,10 @@ public class PunchDAO {
     }
 
 }
+//create method
+public int create(punch){
+        int key = 0;
+        ResultSet rs = null;
+        EmployeeDAO employeeDAO = daoFactory.getEmplyoeeDAO();
+        Employee employee = employeeDAO.find(punch.getBadge());
+}
