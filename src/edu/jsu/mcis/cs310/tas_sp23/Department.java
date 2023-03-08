@@ -12,6 +12,10 @@ public class Department {
         this.description = description;
        
     }
+
+    public Department(int id, String description, int terminalid) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
     
     public int getId(){
         return id;

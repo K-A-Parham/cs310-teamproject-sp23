@@ -3,15 +3,15 @@ package edu.jsu.mcis.cs310.tas_sp23;
 
 import java.util.HashMap;
 
-/**
- *
- * @author Brandon Pugh
- */
+
 
 
 public class Shift {
     private int lunchDuration; // minutes
     private int shiftDuration; // minutes
+    private String name;
+    private int id;
+    
     
     
     public Shift(HashMap<String, String> shiftParams) {

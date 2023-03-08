@@ -31,7 +31,7 @@ public class ShiftDAO {
             if (conn.isValid(0)) {
                 
                 ps = conn.prepareStatement(QUERY_FIND);
-                ps.setString(1, id);
+                ps.setint(1, id);
                 
                 boolean hasresults = ps.execute();
 

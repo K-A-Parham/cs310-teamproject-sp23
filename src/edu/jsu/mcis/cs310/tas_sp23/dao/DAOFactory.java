@@ -46,7 +46,4 @@ public final class DAOFactory {
         return new DepartmentDAO(this);
     }
 
-    public DepartmentDAO getDepartmentDAO() {
-        return new DepartmentDAO(this);
-    }
 }
