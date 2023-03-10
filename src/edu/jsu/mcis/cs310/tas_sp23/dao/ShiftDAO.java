@@ -78,8 +78,58 @@ public class ShiftDAO {
         PreparedStatement ps = null;
         ResultSet rs = null;
         
+        try {
+
+            Connection conn = daoFactory.getConnection();
+
+            if (conn.isValid(0)) {
+
+                ps = conn.prepareStatement(QUERY_FIND);
+                ps.setString(1, badge.getId());
+
+                boolean hasresults = ps.execute();
+
+                if (hasresults) {
+
+                    rs = ps.getResultSet();
+
+                    while (rs.next()) {
+
+                        String shiftID = rs.getString("shiftID");
+                        badge = new Badge(badge.getId(), shiftID);
+                        
+
+                    }
+
+                }
+
+            }
+            
+
+        } catch (SQLException e) {
+
+            throw new DAOException(e.getMessage());
+
+        } finally {
+
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    throw new DAOException(e.getMessage());
+                }
+            }
+            if (ps != null) {
+                try {
+                    ps.close();
+                } catch (SQLException e) {
+                    throw new DAOException(e.getMessage());
+                }
+            }
+
+        }
         
         
-        return shift;
+        return shift; 
     }
 }
