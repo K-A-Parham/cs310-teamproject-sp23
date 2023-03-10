@@ -85,7 +85,7 @@ public class ShiftDAO {
             if (conn.isValid(0)) {
 
                 ps = conn.prepareStatement(QUERY_FIND);
-                //ps.setInt(1, badge);
+                ps.setString(1, badge.getId());
 
                 boolean hasresults = ps.execute();
 
@@ -95,7 +95,7 @@ public class ShiftDAO {
 
                     while (rs.next()) {
 
-                        String shiftID = rs.getString("shiftid");
+                        String shiftID = rs.getString("shiftID");
                         badge = new Badge(badge.getId(), shiftID);
                         
 
