@@ -3,10 +3,7 @@ package edu.jsu.mcis.cs310.tas_sp23;
 
 import java.util.HashMap;
 
-/**
- *
- * @author Brandon Pugh
- */
+
 
 
 public class Shift {
@@ -15,6 +12,9 @@ public class Shift {
     private final String graceperiod, dockpenalty, lunchstart, lunchstop, lunchthreshold;
     private int lunchDuration; // minutes
     private int shiftDuration; // minutes
+    private String name;
+    //private int id;
+    
     
     
     public Shift(HashMap<String, String> shiftParams) {

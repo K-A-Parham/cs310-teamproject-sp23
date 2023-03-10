@@ -6,12 +6,14 @@ public class Department {
     private final String description;
     private final int terminalid;
     
-    public Department (int id, int terminalid, String description){
+    public Department (int id, String description, int terminalid){
         this.id = id;
         this.terminalid = terminalid;
         this.description = description;
        
     }
+
+  
     
     public int getId(){
         return id;
