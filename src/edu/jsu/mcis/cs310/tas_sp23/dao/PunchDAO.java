@@ -26,9 +26,8 @@ public class PunchDAO {
     return punch;
 }
     
-    public PunchDAO list(Punch punch){
+    // public PunchDAO list(Punch punch){
         
-    }
     
     // working on adding list method
     
