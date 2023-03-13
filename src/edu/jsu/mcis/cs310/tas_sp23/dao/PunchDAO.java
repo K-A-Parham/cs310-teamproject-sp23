@@ -26,6 +26,12 @@ public class PunchDAO {
     return punch;
 }
     
+    public PunchDAO list(Punch punch){
+        
+    }
+    
+    // working on adding list method
+    
     public Punch find(int id){
         Punch punch = null;
 
