@@ -1,10 +1,7 @@
 
 package edu.jsu.mcis.cs310.tas_sp23;
-import edu.jsu.mcis.cs310.tas_sp23.Badge; 
-import edu.jsu.mcis.cs310.tas_sp23.EventType;
-import edu.jsu.mcis.cs310.tas_sp23.Punch;
-import java.sql.*;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 
 public class Employee { 
