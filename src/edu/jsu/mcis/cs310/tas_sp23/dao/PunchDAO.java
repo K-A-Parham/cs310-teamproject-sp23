@@ -1,6 +1,7 @@
 package edu.jsu.mcis.cs310.tas_sp23.dao;
 
 import edu.jsu.mcis.cs310.tas_sp23.Badge;
+import edu.jsu.mcis.cs310.tas_sp23.Employee;
 import edu.jsu.mcis.cs310.tas_sp23.EventType;
 import edu.jsu.mcis.cs310.tas_sp23.Punch;
 import java.sql.*;
@@ -15,6 +16,20 @@ public class PunchDAO {
     PunchDAO(DAOFactory daoFactory) {
         this.daoFactory = daoFactory;
     }
+    
+    public Punch create(Punch punch){
+        int key = 0;
+        ResultSet rs = null;
+        EmployeeDAO employeeDAO = daoFactory.getEmployeeDAO();
+        Employee employee = employeeDAO.find(punch.getBadge());   
+        
+    return punch;
+}
+    
+    // public PunchDAO list(Punch punch){
+        
+    
+    // working on adding list method
     
     public Punch find(int id){
         Punch punch = null;
@@ -96,12 +111,4 @@ public class PunchDAO {
         return punch;
 
     }
-
-}
-//create method
-public int create(punch){
-        int key = 0;
-        ResultSet rs = null;
-        EmployeeDAO employeeDAO = daoFactory.getEmplyoeeDAO();
-        Employee employee = employeeDAO.find(punch.getBadge());
 }

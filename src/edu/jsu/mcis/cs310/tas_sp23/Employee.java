@@ -1,88 +1,84 @@
-package edu.jsu.mcis.cs310.tas_sp23;
 
-import java.time.LocalDateTime; 
+package edu.jsu.mcis.cs310.tas_sp23;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-/**
- *
- * @author angel
- */
+
 public class Employee {
-    private final int id ;
-     private final String firstname , lastname , middlename ;
-     private final  LocalDateTime active ;
-     private final  Badge  badge;
-     private final  Department  depart ;
-     private final  Shift  shift ;
-     private final  EmployeeType  etype ;
-
-    public Employee(int id, String firstname, String lastname, String middlename,LocalDateTime active, Badge badge, Department depart, Shift shift,EmployeeType etype) {
-
+    private int id;
+    private String firstname;
+    private String middlename;
+    private String lastname;
+    private LocalDateTime active;
+    private Badge badge;
+    private String Department;
+    private String Shift;
+    private String EmployeeType;
+    
+    public Employee(int id, String firstname, String middlename, String lastname, 
+            LocalDateTime active, Badge badge, String Department, String Shift, String EmployeeType)
+    {
         this.id = id;
         this.firstname = firstname;
-        this.lastname = lastname;
         this.middlename = middlename;
+        this.lastname = lastname;
         this.active = active;
         this.badge = badge;
-        this.depart = depart;
-        this.shift = shift;
-        this.etype = etype;
-
+        this.Department = Department;
+        this.Shift = Shift;
+        this.EmployeeType = EmployeeType;
     }
 
-    public int getId() {
+    public Employee(int id, String firstName, String middleName, String lastName, LocalDateTime active, Badge badge, Department department, Shift shift, EmployeeType employeeType) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
+    public int getId(){
         return id;
     }
-
-    public String getFirstname() {
+    public String getFirstname(){
         return firstname;
     }
-
-    public String getMiddlename() {
-        return firstname;
+    public String getMiddlename(){
+        return middlename;
     }
-
-    public String getLastname() {
+    public String getLastname(){
         return lastname;
     }
-
-    public LocalDateTime getActive() {
+    public LocalDateTime getActive(){
         return active;
     }
-
-    public Badge getBadge() {
+    public Badge getBadge(){
         return badge;
     }
-
-    public Department getDepartment() {
-        return depart;
+    public String getDepartment(){
+        return Department;
     }
-
-    public Shift getShift() {
-        return shift;
+    public String getShift(){
+        return Shift;
     }
-
-    public EmployeeType getEtype() {
-        return etype;
+    public String getEmployeeType(){
+        return EmployeeType;
     }
-
-    //ID #31: Robinson, Lawrence D (#408B195F), Type: Temporary / Part-Time, Department: Hafting, Active: 01/26/2017
-
+    
     @Override
-    public String toString() {
-
+    public String toString(){
+        
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-        String dateText = active.format(formatter);
-
-        StringBuilder s = new StringBuilder();
-
-        s.append("ID #").append(id).append(": ");
-        s.append(lastname).append(", ").append(firstname).append(" ").append(middlename).append(" ");
-        s.append("(#").append(badge.getId()).append("), Type: ").append(etype).append(", ");
-        s.append("Department: ").append(depart.getDescription()).append(", Active: ").append(dateText);
-
-        return s.toString();
-
+        String date = active.format(formatter);
+        
+         StringBuilder stringbuilder = new StringBuilder();
+         
+         stringbuilder.append('#').append(id).append(' ');
+         stringbuilder.append('(').append(firstname).append(')');
+         stringbuilder.append('(').append(middlename).append(')');
+         stringbuilder.append('(').append(lastname).append(')');
+         stringbuilder.append(" (").append(badge).append(") ");
+         stringbuilder.append("Type: ").append(Shift).append(" ");
+         stringbuilder.append("Department: ").append(Department).append(" ");
+         stringbuilder.append("Active: ").append(active).append(" ");
+         
+         return stringbuilder.toString();
     }
-
 }
+
