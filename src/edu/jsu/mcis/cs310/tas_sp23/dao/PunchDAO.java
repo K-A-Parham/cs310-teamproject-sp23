@@ -17,10 +17,10 @@ public class PunchDAO {
         this.daoFactory = daoFactory;
     }
     
-public int create(punch){
+    public Punch create(Punch punch){
         int key = 0;
         ResultSet rs = null;
-        EmployeeDAO employeeDAO = daoFactory.getEmplyoeeDAO();
+        EmployeeDAO employeeDAO = daoFactory.getEmployeeDAO();
         Employee employee = employeeDAO.find(punch.getBadge());   
         
     return punch;
