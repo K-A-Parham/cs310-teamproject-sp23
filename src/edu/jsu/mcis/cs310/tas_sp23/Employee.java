@@ -1,14 +1,12 @@
 
 package edu.jsu.mcis.cs310.tas_sp23;
-import java.time.*;
-import java.util.*;
-import java.time.temporal.ChronoUnit;
-import java.time.format.DateTimeFormatter;
+import edu.jsu.mcis.cs310.tas_sp23.Badge; 
+import edu.jsu.mcis.cs310.tas_sp23.EventType;
+import edu.jsu.mcis.cs310.tas_sp23.Punch;
+import java.sql.*;
+import java.time.LocalDateTime;
 
-/**
- *
- * @author Brandon Pugh
- */
+
 public class Employee { 
     private int id;
     private String firstname;
