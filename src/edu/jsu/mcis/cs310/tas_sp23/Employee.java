@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 
-public class Employee { 
+public class Employee {
     private int id;
     private String firstname;
     private String middlename;

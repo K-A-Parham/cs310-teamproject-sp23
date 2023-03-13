@@ -16,6 +16,15 @@ public class PunchDAO {
         this.daoFactory = daoFactory;
     }
     
+public int create(punch){
+        int key = 0;
+        ResultSet rs = null;
+        EmployeeDAO employeeDAO = daoFactory.getEmplyoeeDAO();
+        Employee employee = employeeDAO.find(punch.getBadge());   
+        
+    return punch;
+}
+    
     public Punch find(int id){
         Punch punch = null;
 
@@ -96,12 +105,4 @@ public class PunchDAO {
         return punch;
 
     }
-
-}
-//create method
-public int create(punch){
-        int key = 0;
-        ResultSet rs = null;
-        EmployeeDAO employeeDAO = daoFactory.getEmplyoeeDAO();
-        Employee employee = employeeDAO.find(punch.getBadge());
 }
