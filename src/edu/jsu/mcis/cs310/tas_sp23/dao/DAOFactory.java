@@ -49,4 +49,8 @@ public final class DAOFactory {
     public DepartmentDAO getDepartmentDAO() {
         return new DepartmentDAO(this);
     }
+
+    EmployeeDAO getEmployeeDAO() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

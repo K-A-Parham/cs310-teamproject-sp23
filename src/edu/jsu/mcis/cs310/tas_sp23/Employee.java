@@ -28,6 +28,10 @@ public class Employee {
         this.Shift = Shift;
         this.EmployeeType = EmployeeType;
     }
+
+    public Employee(int id, String firstName, String middleName, String lastName, LocalDateTime active, Badge badge, Department department, Shift shift, EmployeeType employeeType) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
     public int getId(){
         return id;

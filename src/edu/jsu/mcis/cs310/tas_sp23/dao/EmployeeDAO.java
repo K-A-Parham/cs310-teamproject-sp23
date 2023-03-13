@@ -123,7 +123,8 @@ public class EmployeeDAO {
 
                         int id = rs.getInt("id");
 
-                        EmployeeDAO employeeDAO = daoFactory.getEmployeeDAO();
+                        EmployeeDAO employeeDAO;
+                        employeeDAO = daoFactory.getEmployeeDAO();
                         employee = employeeDAO.find(id);
 
 
