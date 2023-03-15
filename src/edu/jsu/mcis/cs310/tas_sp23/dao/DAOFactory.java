@@ -41,13 +41,7 @@ public final class DAOFactory {
     public ShiftDAO getShiftDAO() {
         return new ShiftDAO(this);
     }
-     public EmployeeDAO getEmployeeDAO() {
-        return new EmployeeDAO(this);
-    /*
-        public DepartmentDAO getDepartmentDAO() {
-        return new DepartmentDAO(this);
-    }
-*/
+
     public DepartmentDAO getDepartmentDAO() {
         return new DepartmentDAO(this);
     }
