@@ -12,8 +12,8 @@ import java.sql.*;
  * @author quayf
  */
 public class EmployeeDAO {
-    private static final String QUERY_FIND = "SELECT * FROM employee where id = ?";
-    private static final String QUERY_FIND1 = "SELECT * FROM employee where badgeid = ?";
+    private static final String QUERY_FIND = "SELECT * FROM employee WHERE id = ?";
+    private static final String QUERY_FIND1 = "SELECT * FROM employee WHERE badgeid = ?";
 
     private final DAOFactory daoFactory;
 
