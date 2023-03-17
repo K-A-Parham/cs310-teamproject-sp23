@@ -1,6 +1,5 @@
 package edu.jsu.mcis.cs310.tas_sp23;
 
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -15,8 +14,9 @@ public class Punch {
 
     // Constructor for new punches (no ID, original timestamp is current time)
     public Punch(int terminalid, Badge badge, EventType punchtype) {
-         this.terminalid = terminalid;
+        this.terminalid = terminalid;
         this.badge = badge;
+        this.originaltimestamp = java.time.LocalDateTime.now();
         this.punchtype = punchtype;
     }
 
@@ -48,8 +48,6 @@ public class Punch {
         return originaltimestamp;
     }
     
-    
-    
     public String printOriginal () {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         String dateText = originaltimestamp.format(formatter);
@@ -65,7 +63,4 @@ public class Punch {
 
         return s.toString();
     }
-
-   
-    
-} 
+}

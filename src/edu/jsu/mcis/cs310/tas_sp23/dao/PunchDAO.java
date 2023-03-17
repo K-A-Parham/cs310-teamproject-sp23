@@ -1,15 +1,14 @@
 package edu.jsu.mcis.cs310.tas_sp23.dao;
 
-import edu.jsu.mcis.cs310.tas_sp23.Badge;
-import edu.jsu.mcis.cs310.tas_sp23.Employee;
-import edu.jsu.mcis.cs310.tas_sp23.EventType;
-import edu.jsu.mcis.cs310.tas_sp23.Punch;
+import edu.jsu.mcis.cs310.tas_sp23.*;
 import java.sql.*;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class PunchDAO {
 
     private static final String QUERY_FIND = "SELECT * FROM event WHERE id = ?";
+    private static final String QUERY_CREATE = "INSERT INTO event (terminalid, badgeid, timestamp, eventtypeid) VALUES(?, ?, ?, ?)";
 
     private final DAOFactory daoFactory;
 
@@ -17,13 +16,42 @@ public class PunchDAO {
         this.daoFactory = daoFactory;
     }
     
-    public Punch create(Punch punch){
+    public int create(Punch punch){
         int key = 0;
         ResultSet rs = null;
         EmployeeDAO employeeDAO = daoFactory.getEmployeeDAO();
-        Employee employee = employeeDAO.find(punch.getBadge());   
+        Employee employee = employeeDAO.find(punch.getBadge());
+
+       if (punch.getTerminalid() == employee.getDepartment().getTerminalId() || punch.getTerminalid() == 0) {
+           PreparedStatement ps = null;
+            try {
+                Connection conn = daoFactory.getConnection();
+                if (conn.isValid(0)) {
+                  String date = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").format(punch.getOriginaltimestamp());
+                  int eventTypeId = EventType.valueOf(punch.getPunchtype().name()).ordinal();
+
+                    ps = conn.prepareStatement(QUERY_CREATE, PreparedStatement.RETURN_GENERATED_KEYS);
+                    ps.setInt(1, punch.getTerminalid());
+                    ps.setString(2, punch.getBadge().getId());
+                    ps.setString(3, date);
+                    ps.setInt(4, eventTypeId);
+
+                    int result = ps.executeUpdate();
+                    if (result > 0) {
+
+                        rs = ps.getGeneratedKeys();
+                        if (rs.next()) {
+                            key = rs.getInt(1);
+                        }
+
+                    }
+                }
+            } catch (SQLException e) {
+                throw new DAOException(e.getMessage());
+            }
+       }
         
-    return punch;
+    return key;
 }
     
     // public PunchDAO list(Punch punch){

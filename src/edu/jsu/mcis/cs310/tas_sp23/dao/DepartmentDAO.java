@@ -5,7 +5,7 @@ import java.sql.*;
 
 public class DepartmentDAO {
 
-    private static final String QUERY_FIND = "SELECT * FROM badge WHERE id = ?";
+    private static final String QUERY_FIND = "SELECT * FROM department WHERE id = ?";
 
     private final DAOFactory daoFactory;
 
@@ -77,4 +77,3 @@ public class DepartmentDAO {
     }
 
 }
-
