@@ -62,15 +62,15 @@ public class Employee {
         String date = active.format(formatter);
         
          StringBuilder stringbuilder = new StringBuilder();
-         //"ID #14: Donaldson, Kathleen C (#229324A4), Type: Full-Time, Department: Press, Active: 02/02/2017"
+         
          stringbuilder.append("ID ").append("#").append(id).append(':');
          stringbuilder.append(' ').append(lastname).append(',');
          stringbuilder.append(' ').append(firstname).append(' ');
          stringbuilder.append(middlename).append(' ');
-         stringbuilder.append(" (").append(badge).append(") ");
+         stringbuilder.append("(#").append(badge.getId()).append("), ");
          stringbuilder.append("Type: ").append(employeeType).append(',').append(' ');
-         stringbuilder.append("Department: ").append(department).append(',');
-         stringbuilder.append(" Active: ").append(active).append(" ");
+         stringbuilder.append("Department: ").append(department.getDescription()).append(',');
+         stringbuilder.append(" Active: ").append(date);
          
          return stringbuilder.toString();
     }
