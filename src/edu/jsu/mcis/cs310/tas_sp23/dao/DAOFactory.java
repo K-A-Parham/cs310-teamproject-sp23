@@ -41,13 +41,13 @@ public final class DAOFactory {
     public ShiftDAO getShiftDAO() {
         return new ShiftDAO(this);
     }
-
+    
     public DepartmentDAO getDepartmentDAO() {
         return new DepartmentDAO(this);
     }
 
     public EmployeeDAO getEmployeeDAO() {
-        //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+
         return new EmployeeDAO(this);
     }
 }

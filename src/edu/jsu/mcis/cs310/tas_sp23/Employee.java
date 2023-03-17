@@ -1,8 +1,6 @@
-
 package edu.jsu.mcis.cs310.tas_sp23;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-
 
 public class Employee {
     private int id;
@@ -11,12 +9,12 @@ public class Employee {
     private String lastname;
     private LocalDateTime active;
     private Badge badge;
-    private String Department;
-    private String Shift;
-    private String EmployeeType;
+    private Department department;
+    private Shift shift;
+    private EmployeeType employeeType;
     
     public Employee(int id, String firstname, String middlename, String lastname, 
-            LocalDateTime active, Badge badge, String Department, String Shift, String EmployeeType)
+            LocalDateTime active, Badge badge, Department department, Shift shift, EmployeeType employeeType)
     {
         this.id = id;
         this.firstname = firstname;
@@ -24,13 +22,9 @@ public class Employee {
         this.lastname = lastname;
         this.active = active;
         this.badge = badge;
-        this.Department = Department;
-        this.Shift = Shift;
-        this.EmployeeType = EmployeeType;
-    }
-
-    public Employee(int id, String firstName, String middleName, String lastName, LocalDateTime active, Badge badge, Department department, Shift shift, EmployeeType employeeType) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        this.department = department;
+        this.shift = shift;
+        this.employeeType = employeeType;
     }
     
     public int getId(){
@@ -51,14 +45,14 @@ public class Employee {
     public Badge getBadge(){
         return badge;
     }
-    public String getDepartment(){
-        return Department;
+    public Department getDepartment(){
+        return department;
     }
-    public String getShift(){
-        return Shift;
+    public Shift getShift(){
+        return shift;
     }
-    public String getEmployeeType(){
-        return EmployeeType;
+    public EmployeeType getEmployeeType(){
+        return employeeType;
     }
     
     @Override
@@ -74,11 +68,10 @@ public class Employee {
          stringbuilder.append('(').append(middlename).append(')');
          stringbuilder.append('(').append(lastname).append(')');
          stringbuilder.append(" (").append(badge).append(") ");
-         stringbuilder.append("Type: ").append(Shift).append(" ");
-         stringbuilder.append("Department: ").append(Department).append(" ");
+         stringbuilder.append("Type: ").append(shift).append(" ");
+         stringbuilder.append("Department: ").append(department).append(" ");
          stringbuilder.append("Active: ").append(active).append(" ");
          
          return stringbuilder.toString();
     }
 }
-
