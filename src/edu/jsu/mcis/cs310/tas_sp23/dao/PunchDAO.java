@@ -114,34 +114,34 @@ public class PunchDAO {
 
 }
 //create method
- public int create(punch) {
+ //public int create(punch) {
 
-        int key = 0;
-        ResultSet rs = null;
-        EmployeeDAO employeeDAO = daoFactory.getEmployeeDAO();
-        Employee employee = employeeDAO.find(punch.getBadge());
+      //  int key = 0;
+      //  ResultSet rs = null;
+      //  EmployeeDAO employeeDAO = daoFactory.getEmployeeDAO();
+      //  Employee employee = employeeDAO.find(punch.getBadge());
 
-       if (punch.getTerminalId() == employee.getDepartment().getTerminalId() || punch.getTerminalId() == 0) {
-                PreparedStatement ps = null;
-            try {
-                  Connection conn = daoFactory.getConnection();
-                if (conn.isValid(0)) {
-                    final String date = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").format(punch.getOriginalTimestamp());
-                    final int eventTypeId = EventType.valueOf(punch.getPunchType().name()).ordinal();
+     //  if (punch.getTerminalId() == employee.getDepartment().getTerminalId() || punch.getTerminalId() == 0) {
+              //  PreparedStatement ps = null;
+          //  try {
+               //   Connection conn = daoFactory.getConnection();
+               // if (conn.isValid(0)) {
+                 //   final String date = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").format(punch.getOriginalTimestamp());
+                   // final int eventTypeId = EventType.valueOf(punch.getPunchType().name()).ordinal();
 
-                    ps = conn.prepareStatement(QUERY_CREATE, PreparedStatement.RETURN_GENERATED_KEYS);
-                    ps.setInt(1, punch.getTerminalId());
-                    ps.setString(2, punch.getBadge().getId());
-                    ps.setString(3, date);
-                    ps.setInt(4, eventTypeId);
+                   // ps = conn.prepareStatement(QUERY_CREATE, PreparedStatement.RETURN_GENERATED_KEYS);
+                    //ps.setInt(1, punch.getTerminalId());
+                    //ps.setString(2, punch.getBadge().getId());
+                   // ps.setString(3, date);
+                    //ps.setInt(4, eventTypeId);
 
-                    int result = ps.executeUpdate();
-                    if (result > 0) {
+                    //int result = ps.executeUpdate();
+                   // if (result > 0) {
 
-                        rs = ps.getGeneratedKeys();
-                        if (rs.next()) {
-                            key = rs.getInt(1);
-                        }
+                       // rs = ps.getGeneratedKeys();
+                       // if (rs.next()) {
+                       //     key = rs.getInt(1);
+                       // }
 
-                    }
-                }
+                    //}
+               // }
