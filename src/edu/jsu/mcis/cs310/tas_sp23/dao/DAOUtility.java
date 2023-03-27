@@ -20,6 +20,17 @@ public final class DAOUtility {
     public static int calculateTotalMinutes(ArrayList<Punch> dailypunchlist, Shift shift)
     {
         
+        for (Punch punch : dailypunchlist) 
+        {
+            //punch.adjust(s);
+        }
+    /*    
+        for (int i = 0; i < dailypunchlist.size(); i++)
+        {
+          
+        }
+    */    
+        
         return 0;
         
     }
