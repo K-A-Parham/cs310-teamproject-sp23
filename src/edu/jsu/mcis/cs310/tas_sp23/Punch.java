@@ -2,6 +2,7 @@ package edu.jsu.mcis.cs310.tas_sp23;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.*;
 
 public class Punch {
    
@@ -11,6 +12,14 @@ public class Punch {
     private LocalDateTime originaltimestamp;
     private final EventType punchtype;
     private PunchAdjustmentType adjustmenttype = null; // nullable
+    private LunchStatus adjustedlunchstatus;
+    
+    public enum LunchStatus {
+        HAPPENING,
+        HAPPENED,
+        NOT_HAPPENING,
+        INAPPLICABLE
+    };
 
     // Constructor for new punches (no ID, original timestamp is current time)
     public Punch(int terminalid, Badge badge, EventType punchtype) {
@@ -48,6 +57,10 @@ public class Punch {
         return originaltimestamp;
     }
     
+    public PunchAdjustmentType getAdjustmenttype() {
+        return adjustmenttype;
+    }
+    
     public String printOriginal () {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         String dateText = originaltimestamp.format(formatter);
@@ -63,4 +76,21 @@ public class Punch {
 
         return s.toString();
     }
+    
+    public void adjust(Shift s) {
+
+        if(originaltimestamp.getDayOfWeek() == DayOfWeek.SATURDAY || originaltimestamp.getDayOfWeek() == DayOfWeek.SUNDAY ){
+           adjustmenttype = PunchAdjustmentType.INTERVAL_ROUND;
+           adjustedlunchstatus = LunchStatus.INAPPLICABLE;
+        }
+        else {
+            switch(punchtype){
+                case CLOCK_IN:
+                    
+                    break;
+                case CLOCK_OUT:
+                    break;
+            }
+        }
+    }    
 }
