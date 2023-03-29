@@ -39,6 +39,10 @@ public final class DAOUtility {
         return totalMinutes;
         
     }
+
+    public static String getPunchListAsJSON(ArrayList<Punch> dailypunchlist) {
+        throw new UnsupportedOperationException("Not supported yet."); 
+    }
             
 
 }
