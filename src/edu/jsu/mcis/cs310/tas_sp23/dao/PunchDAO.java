@@ -142,8 +142,20 @@ public class PunchDAO {
 
     }
 
-    public ArrayList<Punch> list(Badge b, LocalDate toLocalDate) {
-        throw new UnsupportedOperationException("Not supported yet."); 
-    }
+   public ArrayList<Punch> list(Badge badge, LocalDate begin, LocalDate end) {
+      
+        ArrayList<Punch> list = new ArrayList();
+        
+        PreparedStatement ps = null;
+        
+        ResultSet rs = null;
+        
+        return null;
+        
+        
+        
+   }
+
+    
 
 }
