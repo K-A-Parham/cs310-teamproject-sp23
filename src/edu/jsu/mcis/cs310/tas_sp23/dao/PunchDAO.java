@@ -2,8 +2,10 @@ package edu.jsu.mcis.cs310.tas_sp23.dao;
 
 import edu.jsu.mcis.cs310.tas_sp23.*;
 import java.sql.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 public class PunchDAO {
 
@@ -138,6 +140,10 @@ public class PunchDAO {
 
         return punch;
 
+    }
+
+    public ArrayList<Punch> list(Badge b, LocalDate toLocalDate) {
+        throw new UnsupportedOperationException("Not supported yet."); 
     }
 
 }
