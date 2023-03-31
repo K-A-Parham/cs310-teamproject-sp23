@@ -11,12 +11,12 @@ public class Employee {
     private String lastname;
     private LocalDateTime active;
     private Badge badge;
-    private String Department;
+    private Department department;
     private String Shift;
     private String EmployeeType;
     
     public Employee(int id, String firstname, String middlename, String lastname, 
-            LocalDateTime active, Badge badge, String Department, String Shift, String EmployeeType)
+            LocalDateTime active, Badge badge, Department department, String Shift, String EmployeeType)
     {
         this.id = id;
         this.firstname = firstname;
@@ -24,7 +24,7 @@ public class Employee {
         this.lastname = lastname;
         this.active = active;
         this.badge = badge;
-        this.Department = Department;
+        this.department = department;
         this.Shift = Shift;
         this.EmployeeType = EmployeeType;
     }
@@ -51,8 +51,8 @@ public class Employee {
     public Badge getBadge(){
         return badge;
     }
-    public String getDepartment(){
-        return Department;
+    public Department getDepartment(){
+        return department;
     }
     public String getShift(){
         return Shift;
@@ -75,7 +75,7 @@ public class Employee {
          stringbuilder.append('(').append(lastname).append(')');
          stringbuilder.append(" (").append(badge).append(") ");
          stringbuilder.append("Type: ").append(Shift).append(" ");
-         stringbuilder.append("Department: ").append(Department).append(" ");
+         stringbuilder.append("Department: ").append(department).append(" ");
          stringbuilder.append("Active: ").append(active).append(" ");
          
          return stringbuilder.toString();
