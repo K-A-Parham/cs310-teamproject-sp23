@@ -17,21 +17,26 @@ import edu.jsu.mcis.cs310.tas_sp23.Shift;
  */
 public final class DAOUtility {
     
+    //int totalMinutes;
+    
     public static int calculateTotalMinutes(ArrayList<Punch> dailypunchlist, Shift shift)
     {
-        
+        int totalMinutes = 0;
+    /*            
         for (Punch punch : dailypunchlist) 
         {
-            //punch.adjust(s);
-        }
-    /*    
-        for (int i = 0; i < dailypunchlist.size(); i++)
-        {
-          
+            punch.adjust(shift);
+            //totalMinutes =           
         }
     */    
+        for (int i = 0; i < dailypunchlist.size(); i++)
+        {
+            //totalMinutes += dailypunchlist[i];
+                    
+        }
         
-        return 0;
+        
+        return totalMinutes;
         
     }
 
