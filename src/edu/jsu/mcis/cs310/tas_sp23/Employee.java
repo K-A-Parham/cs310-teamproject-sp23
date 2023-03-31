@@ -1,8 +1,6 @@
-
 package edu.jsu.mcis.cs310.tas_sp23;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-
 
 public class Employee {
     private int id;
@@ -54,11 +52,11 @@ public class Employee {
     public Department getDepartment(){
         return department;
     }
-    public String getShift(){
-        return Shift;
+    public Shift getShift(){
+        return shift;
     }
-    public String getEmployeeType(){
-        return EmployeeType;
+    public EmployeeType getEmployeeType(){
+        return employeeType;
     }
     
     @Override
@@ -69,16 +67,7 @@ public class Employee {
         
          StringBuilder stringbuilder = new StringBuilder();
          
-         stringbuilder.append('#').append(id).append(' ');
-         stringbuilder.append('(').append(firstname).append(')');
-         stringbuilder.append('(').append(middlename).append(')');
-         stringbuilder.append('(').append(lastname).append(')');
-         stringbuilder.append(" (").append(badge).append(") ");
-         stringbuilder.append("Type: ").append(Shift).append(" ");
-         stringbuilder.append("Department: ").append(department).append(" ");
-         stringbuilder.append("Active: ").append(active).append(" ");
          
          return stringbuilder.toString();
     }
 }
-
