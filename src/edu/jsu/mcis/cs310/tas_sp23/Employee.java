@@ -10,11 +10,11 @@ public class Employee {
     private LocalDateTime active;
     private Badge badge;
     private Department department;
-    private String Shift;
-    private String EmployeeType;
+    private Shift shift;
+    private EmployeeType employeeType;
     
     public Employee(int id, String firstname, String middlename, String lastname, 
-            LocalDateTime active, Badge badge, Department department, String Shift, String EmployeeType)
+            LocalDateTime active, Badge badge, Department department, Shift shift, EmployeeType employeeType)
     {
         this.id = id;
         this.firstname = firstname;
@@ -23,12 +23,8 @@ public class Employee {
         this.active = active;
         this.badge = badge;
         this.department = department;
-        this.Shift = Shift;
-        this.EmployeeType = EmployeeType;
-    }
-
-    public Employee(int id, String firstName, String middleName, String lastName, LocalDateTime active, Badge badge, Department department, Shift shift, EmployeeType employeeType) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        this.shift = shift;
+        this.employeeType = employeeType;
     }
     
     public int getId(){
