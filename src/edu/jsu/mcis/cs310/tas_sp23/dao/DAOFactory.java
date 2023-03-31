@@ -16,9 +16,12 @@ public final class DAOFactory {
 
         DAOProperties properties = new DAOProperties(prefix);
 
-        this.url = properties.getProperty(PROPERTY_URL);
-        this.username = properties.getProperty(PROPERTY_USERNAME);
-        this.password = properties.getProperty(PROPERTY_PASSWORD);
+        //this.url = properties.getProperty(PROPERTY_URL);
+        this.url = "jdbc:mysql://localhost/tas_sp23_v1?serverTimezone=America/Chicago&useSSL=false&allowPublicKeyRetrieval=true&zeroDateTimeBehavior=convertToNull";
+        //this.username = properties.getProperty(PROPERTY_USERNAME);
+        this.username = "tas_sp23_user";
+        //this.password = properties.getProperty(PROPERTY_PASSWORD);
+        this.password = "CS310!tas";
 
        
         try {
