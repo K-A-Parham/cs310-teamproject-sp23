@@ -18,6 +18,7 @@ import edu.jsu.mcis.cs310.tas_sp23.Shift;
 public final class DAOUtility {
     
     //int totalMinutes;
+      String dateFormat = "E MM/dd/yyyy HH:mm:ss";
     
     public static int calculateTotalMinutes(ArrayList<Punch> dailypunchlist, Shift shift)
     {
