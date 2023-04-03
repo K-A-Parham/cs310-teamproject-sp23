@@ -3,15 +3,15 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Employee {
-    private final int id;
-    private final String firstname;
-    private final String middlename;
-    private final String lastname;
-    private final LocalDateTime active;
-    private final Badge badge;
-    private final Department department;
-    private final Shift shift;
-    private final EmployeeType employeeType;
+    private int id;
+    private String firstname;
+    private String middlename;
+    private String lastname;
+    private LocalDateTime active;
+    private Badge badge;
+    private Department department;
+    private Shift shift;
+    private EmployeeType employeeType;
     
     public Employee(int id, String firstname, String middlename, String lastname, 
             LocalDateTime active, Badge badge, Department department, Shift shift, EmployeeType employeeType)
@@ -63,14 +63,6 @@ public class Employee {
         
          StringBuilder stringbuilder = new StringBuilder();
          
-         stringbuilder.append("ID ").append("#").append(id).append(':');
-         stringbuilder.append(' ').append(lastname).append(',');
-         stringbuilder.append(' ').append(firstname).append(' ');
-         stringbuilder.append(middlename).append(' ');
-         stringbuilder.append("(#").append(badge.getId()).append("), ");
-         stringbuilder.append("Type: ").append(employeeType).append(',').append(' ');
-         stringbuilder.append("Department: ").append(department.getDescription()).append(',');
-         stringbuilder.append(" Active: ").append(date);
          
          return stringbuilder.toString();
     }
