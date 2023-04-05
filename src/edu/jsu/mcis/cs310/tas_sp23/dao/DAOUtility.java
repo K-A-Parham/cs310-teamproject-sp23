@@ -4,9 +4,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import edu.jsu.mcis.cs310.tas_sp23.Punch;
 import com.github.cliftonlabs.json_simple.*;
-import edu.jsu.mcis.cs310.tas_sp23.Punch;
 import edu.jsu.mcis.cs310.tas_sp23.Shift;
 import java.math.BigDecimal;
+import edu.jsu.mcis.cs310.tas_sp23.Badge;
+import edu.jsu.mcis.cs310.tas_sp23.EventType;
 
 /**
  * 
@@ -23,6 +24,7 @@ public final class DAOUtility {
     public static int calculateTotalMinutes(ArrayList<Punch> dailypunchlist, Shift shift)
     {
         int totalMinutes = 0;
+          
     /*            
         for (Punch punch : dailypunchlist) 
         {
