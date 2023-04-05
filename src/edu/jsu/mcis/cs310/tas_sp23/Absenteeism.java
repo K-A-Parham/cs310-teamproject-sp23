@@ -6,9 +6,9 @@ import java.time.format.DateTimeFormatter;
 
 public class Absenteeism {
     
-    private Employee employee;
-    private LocalDate payPeriod;
-    private BigDecimal percentage;
+    private final Employee employee;
+    private final LocalDate payPeriod;
+    private final BigDecimal percentage;
     
     public Absenteeism(Employee employee, LocalDate localDate, BigDecimal percentage){
         this.employee = employee;
