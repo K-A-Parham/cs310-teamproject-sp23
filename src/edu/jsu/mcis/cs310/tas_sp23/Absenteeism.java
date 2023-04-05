@@ -6,14 +6,14 @@ import java.time.format.DateTimeFormatter;
 
 public class Absenteeism {
     
-    private Employee employee;
-    private LocalDate payPeriod;
-    private BigDecimal percentage;
+    private final Employee employee;
+    private final LocalDate payPeriod;
+    private final BigDecimal bigDec;
     
-    public Absenteeism(Employee employee, LocalDate localDate, BigDecimal percentage){
+    public Absenteeism(Employee employee, LocalDate localDate, BigDecimal bigDec){
         this.employee = employee;
         this.payPeriod = localDate;
-        this.percentage = percentage;
+        this.bigDec = bigDec;
     }
     
     public Employee getEmployee(){
@@ -22,8 +22,8 @@ public class Absenteeism {
     public LocalDate getPayPeriod(){
         return payPeriod;
     }
-    public BigDecimal getPercentage(){
-        return percentage;
+    public BigDecimal getBigDec() {
+        return bigDec;
     }
     
     @Override
@@ -32,8 +32,8 @@ public class Absenteeism {
         String date = DateTimeFormatter.ofPattern("MM-dd-yyyy").format(payPeriod);
         
         s.append("#").append(employee.getBadge().getId());
-        s.append(" (Pay Period Starting ").append(date).append("): ");
-        s.append(percentage).append("%");
+        s.append(" (Pay Period ").append(date).append("): ");
+        s.append(bigDec).append("%");
         
         return s.toString();
     }
