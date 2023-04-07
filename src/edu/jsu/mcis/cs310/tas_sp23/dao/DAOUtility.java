@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import edu.jsu.mcis.cs310.tas_sp23.Punch;
 import com.github.cliftonlabs.json_simple.*;
-import edu.jsu.mcis.cs310.tas_sp23.Punch;
 import edu.jsu.mcis.cs310.tas_sp23.Shift;
+import java.math.BigDecimal;
+import edu.jsu.mcis.cs310.tas_sp23.Badge;
+import edu.jsu.mcis.cs310.tas_sp23.EventType;
 
 /**
  * 
@@ -22,6 +24,7 @@ public final class DAOUtility {
     public static int calculateTotalMinutes(ArrayList<Punch> dailypunchlist, Shift shift)
     {
         int totalMinutes = 0;
+          
     /*            
         for (Punch punch : dailypunchlist) 
         {
@@ -42,6 +45,15 @@ public final class DAOUtility {
 
     public static String getPunchListAsJSON(ArrayList<Punch> dailypunchlist) {
         throw new UnsupportedOperationException("Not supported yet."); 
+    }
+    
+    
+    public static BigDecimal calculateAbsenteeism(ArrayList<Punch> punchlist, Shift s)
+    {
+        //temporary code will be adjusted after punch adjust method is complete
+        BigDecimal bd = new BigDecimal("124567890.0987654321");
+        
+        return bd;
     }
             
 
