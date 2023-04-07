@@ -13,13 +13,10 @@ public class Punch {
     private final EventType punchtype;
     private PunchAdjustmentType adjustmenttype = null; // nullable
     private LunchStatus adjustedlunchstatus;
-    
-    
-    /*
-    Fixing later
-    
     private int graceperiod;
     private int dockpenalty;
+    
+    
     public int getDockPenalty() {
         return dockpenalty;
         
@@ -27,7 +24,6 @@ public class Punch {
     public int getGracePeriod() {
         return graceperiod;
     }
-*/
 
     public enum LunchStatus {
         HAPPENING,
@@ -77,7 +73,7 @@ public class Punch {
     }
     
     public int printAdjusted() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
     
     public String printOriginal () {
