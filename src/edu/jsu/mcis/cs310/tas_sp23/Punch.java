@@ -16,6 +16,8 @@ public class Punch {
     
     
     /*
+    Fixing later
+    
     private int graceperiod;
     private int dockpenalty;
     public int getDockPenalty() {
