@@ -10,8 +10,9 @@ public class Punch {
     private final int terminalid;
     private final Badge badge;
     private LocalDateTime originaltimestamp;
+    private LocalDateTime adjustedtimestamp;
     private final EventType punchtype;
-    private PunchAdjustmentType adjustmenttype = null; // nullable
+    private PunchAdjustmentType adjustmenttype; // nullable
     private LunchStatus adjustedlunchstatus;
     private int graceperiod;
     private int dockpenalty;
@@ -72,8 +73,21 @@ public class Punch {
         return adjustmenttype;
     }
     
-    public int printAdjusted() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public String printAdjusted() {
+        //throw new UnsupportedOperationException("Not supported yet.");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        String dateText = originaltimestamp.format(formatter);
+
+        formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        String timeText_two = adjustedtimestamp.format(formatter); 
+        
+        String dayOfWeek = originaltimestamp.getDayOfWeek().toString().substring(0, 3).toUpperCase();
+
+        StringBuilder s = new StringBuilder();        
+        s.append("#").append(badge.getId()).append(" ");
+        s.append(punchtype).append(": ").append(dayOfWeek).append(" ").append(dateText).append(" ").append(timeText_two).append(" ").append(adjustmenttype);
+
+        return s.toString();
     }
     
     public String printOriginal () {
