@@ -3,15 +3,15 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Employee {
-    private int id;
-    private String firstname;
-    private String middlename;
-    private String lastname;
-    private LocalDateTime active;
-    private Badge badge;
-    private Department department;
-    private Shift shift;
-    private EmployeeType employeeType;
+    private final int id;
+    private final String firstname;
+    private final String middlename;
+    private final String lastname;
+    private final LocalDateTime active;
+    private final Badge badge;
+    private final Department department;
+    private final Shift shift;
+    private final EmployeeType employeeType;
     
     public Employee(int id, String firstname, String middlename, String lastname, 
             LocalDateTime active, Badge badge, Department department, Shift shift, EmployeeType employeeType)
