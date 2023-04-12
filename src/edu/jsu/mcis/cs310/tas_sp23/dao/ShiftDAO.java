@@ -3,6 +3,7 @@ package edu.jsu.mcis.cs310.tas_sp23.dao;
 import edu.jsu.mcis.cs310.tas_sp23.Badge;
 import edu.jsu.mcis.cs310.tas_sp23.Shift;
 import java.sql.*;
+//import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -162,3 +163,9 @@ public class ShiftDAO {
         return shift; 
     }
 }
+/*public Shift find(Badge b, LocalDate ts) {
+        
+        return null;
+        
+    }
+*/
