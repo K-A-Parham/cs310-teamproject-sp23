@@ -65,6 +65,10 @@ public class Punch {
     public PunchAdjustmentType getAdjustmenttype() {
         return adjustmenttype;
     }
+    
+    public LunchStatus getadjustedlunchstatus() {
+        return adjustedlunchstatus;
+    }
   
     public String printAdjusted() {
         //throw new UnsupportedOperationException("Not supported yet.");
