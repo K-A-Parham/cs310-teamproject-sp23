@@ -13,7 +13,7 @@ public class Punch {
     private final LocalDateTime originaltimestamp;
     private LocalDateTime adjustedtimestamp;
     private final EventType punchtype;
-    private PunchAdjustmentType adjustmenttype; // nullable
+    private PunchAdjustmentType adjustmenttype;
     private LunchStatus adjustedlunchstatus;
     
     public enum LunchStatus {
@@ -67,7 +67,7 @@ public class Punch {
     }
   
     public String printAdjusted() {
-        //throw new UnsupportedOperationException("Not supported yet.");
+        
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         String dateText = originaltimestamp.format(formatter);
 
@@ -99,85 +99,126 @@ public class Punch {
         return s.toString();
     }
     
-    //still working on it (unfinished)
     public void adjust(Shift s) {
-        
-    LocalDateTime shiftstart, before_shiftstart, graceperiod, dockpenalty, lunchstart, lunchstop;
-    LocalDateTime shiftstop, after_shiftstop, clockout_graceperiod, clockout_dockpenalty;
-    
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-    
-    shiftstart = LocalDateTime.of(originaltimestamp.toLocalDate(), s.getShiftStart());
-    graceperiod = LocalDateTime.of(originaltimestamp.toLocalDate(), s.getShiftStart()).plus(Duration.of(s.getGracePeriod(), ChronoUnit.MINUTES));
-    dockpenalty = LocalDateTime.of(originaltimestamp.toLocalDate(), s.getShiftStart()).plus(Duration.of(s.getDockPenalty(), ChronoUnit.MINUTES));
-    lunchstart = LocalDateTime.of(originaltimestamp.toLocalDate(), s.getLunchStart());
-    lunchstop = LocalDateTime.of(originaltimestamp.toLocalDate(), s.getLunchStop());
-    shiftstop = LocalDateTime.of(originaltimestamp.toLocalDate(), s.getShiftStop());
-    clockout_graceperiod = LocalDateTime.of(originaltimestamp.toLocalDate(), s.getShiftStop()).minus(Duration.of(s.getGracePeriod(), ChronoUnit.MINUTES));
-    clockout_dockpenalty = LocalDateTime.of(originaltimestamp.toLocalDate(), s.getShiftStop()).minus(Duration.of(s.getDockPenalty(), ChronoUnit.MINUTES));
-    
-    //shift clock in
-    if (originaltimestamp.isBefore(shiftstart))  //might need to add an isAfter method for the time before the end of the shift
-    {
-        adjustedtimestamp = shiftstart;
-        adjustmenttype = PunchAdjustmentType.SHIFT_START;
-    }
-    else if (originaltimestamp.isAfter(shiftstart) && originaltimestamp.isBefore(graceperiod))
-    {
-        adjustedtimestamp = shiftstart;
-        adjustmenttype = PunchAdjustmentType.SHIFT_START;
-    }
-    else if (originaltimestamp.isAfter(graceperiod) && originaltimestamp.isBefore(dockpenalty))
-    {
-        adjustedtimestamp = dockpenalty;
-        adjustmenttype = PunchAdjustmentType.SHIFT_DOCK;
-    }
-    //lunch clock out: might not be correct
-    else if (originaltimestamp.isAfter(lunchstart) && originaltimestamp.isBefore(lunchstop))
-    {
-        adjustedtimestamp = lunchstart;
-        adjustmenttype = PunchAdjustmentType.LUNCH_START;
-    }
-    //lunch clock in: might not be correct
-    else if (originaltimestamp.isAfter(lunchstart) && originaltimestamp.isBefore(lunchstop))
-    {
-        adjustedtimestamp = lunchstop;
-        adjustmenttype = PunchAdjustmentType.LUNCH_STOP;
-    }
-    //shift clock out
-    if (originaltimestamp.isAfter(shiftstop))  //might need to add an isBefore method for the time after the end of the shift
-    {
-        adjustedtimestamp = shiftstop;
-        adjustmenttype = PunchAdjustmentType.SHIFT_STOP;
-    }
-    else if (originaltimestamp.isBefore(shiftstop) && originaltimestamp.isAfter(clockout_graceperiod))
-    {
-        adjustedtimestamp = shiftstop;
-        adjustmenttype = PunchAdjustmentType.SHIFT_STOP;
-    }
-    else if (originaltimestamp.isBefore(clockout_graceperiod) && originaltimestamp.isAfter(clockout_dockpenalty))
-    {
-        adjustedtimestamp = clockout_dockpenalty;
-        adjustmenttype = PunchAdjustmentType.SHIFT_DOCK;
-    }
-    
-    //still need to add "Interval Round" and "None" will try to over the weekend
-    
-/*
-        if(originaltimestamp.getDayOfWeek() == DayOfWeek.SATURDAY || originaltimestamp.getDayOfWeek() == DayOfWeek.SUNDAY ){
-           adjustmenttype = PunchAdjustmentType.INTERVAL_ROUND;
-           adjustedlunchstatus = LunchStatus.INAPPLICABLE;
-        }
-        else {
-            switch(punchtype){
-                case CLOCK_IN:
-                    
-                    break;
-                case CLOCK_OUT:
-                    break;
-            }
-        }
-*/
 
-    }    
+        LocalDateTime shiftstart, before_shiftstart, graceperiod, dockpenalty, lunchstart, lunchstop;
+        LocalDateTime shiftstop, after_shiftstop, clockout_graceperiod, clockout_dockpenalty;
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+
+        shiftstart = LocalDateTime.of(originaltimestamp.toLocalDate(), s.getShiftStart());
+        graceperiod = LocalDateTime.of(originaltimestamp.toLocalDate(), s.getShiftStart()).plus(Duration.of(s.getGracePeriod(), ChronoUnit.MINUTES));
+        dockpenalty = LocalDateTime.of(originaltimestamp.toLocalDate(), s.getShiftStart()).plus(Duration.of(s.getDockPenalty(), ChronoUnit.MINUTES));
+        lunchstart = LocalDateTime.of(originaltimestamp.toLocalDate(), s.getLunchStart());
+        lunchstop = LocalDateTime.of(originaltimestamp.toLocalDate(), s.getLunchStop());
+        shiftstop = LocalDateTime.of(originaltimestamp.toLocalDate(), s.getShiftStop());
+        clockout_graceperiod = LocalDateTime.of(originaltimestamp.toLocalDate(), s.getShiftStop()).minus(Duration.of(s.getGracePeriod(), ChronoUnit.MINUTES));
+        clockout_dockpenalty = LocalDateTime.of(originaltimestamp.toLocalDate(), s.getShiftStop()).minus(Duration.of(s.getDockPenalty(), ChronoUnit.MINUTES));
+        before_shiftstart = LocalDateTime.of(originaltimestamp.toLocalDate(), s.getShiftStart()).minus(Duration.of(s.getRoundInterval(), ChronoUnit.MINUTES));
+        after_shiftstop = LocalDateTime.of(originaltimestamp.toLocalDate(), s.getShiftStop()).plus(Duration.of(s.getRoundInterval(), ChronoUnit.MINUTES));
+
+        adjustmenttype = null;
+        adjustedtimestamp = originaltimestamp;
+        
+        DayOfWeek dayofweek = originaltimestamp.getDayOfWeek();
+        
+        if ( (dayofweek != DayOfWeek.SATURDAY) && (dayofweek != DayOfWeek.SUNDAY)) {
+
+            if (punchtype == EventType.CLOCK_IN) {
+
+                //shift clock in
+                if (originaltimestamp.isBefore(shiftstart) && (originaltimestamp.isAfter(before_shiftstart) || originaltimestamp.isEqual(before_shiftstart)))
+                {
+                    adjustedtimestamp = shiftstart;
+                    
+                    adjustmenttype = PunchAdjustmentType.SHIFT_START;
+                }
+                else if (originaltimestamp.isAfter(shiftstart) && originaltimestamp.isBefore(graceperiod))
+                {
+                    adjustedtimestamp = shiftstart;
+                    adjustmenttype = PunchAdjustmentType.SHIFT_START;
+                }
+                else if (originaltimestamp.isAfter(graceperiod) && (originaltimestamp.isBefore(dockpenalty) || originaltimestamp.isEqual(dockpenalty)))
+                {
+                    adjustedtimestamp = dockpenalty;
+                    adjustmenttype = PunchAdjustmentType.SHIFT_DOCK;
+                }
+
+                //lunch clock in: might not be correct
+                else if ((originaltimestamp.isAfter(lunchstart) || originaltimestamp.isEqual(lunchstart)) && originaltimestamp.isBefore(lunchstop))
+                {
+                    adjustedtimestamp = lunchstop;
+                    adjustmenttype = PunchAdjustmentType.LUNCH_STOP;
+                }
+
+            }
+
+            else if (punchtype == EventType.CLOCK_OUT) {
+
+                //lunch clock out: might not be correct
+                if (originaltimestamp.isAfter(lunchstart) && (originaltimestamp.isBefore(lunchstop) || originaltimestamp.isEqual(lunchstop)))
+                {
+                    adjustedtimestamp = lunchstart;
+                    adjustmenttype = PunchAdjustmentType.LUNCH_START;
+                }
+
+                //shift clock out
+                else if (originaltimestamp.isAfter(shiftstop) && (originaltimestamp.isBefore(after_shiftstop) || originaltimestamp.isEqual(after_shiftstop)))  //might need to add an isBefore method for the time after the end of the shift
+                {
+                    adjustedtimestamp = shiftstop;
+                    adjustmenttype = PunchAdjustmentType.SHIFT_STOP;
+                }
+
+                else if (originaltimestamp.isBefore(shiftstop) && originaltimestamp.isAfter(clockout_graceperiod))
+                {
+                    adjustedtimestamp = shiftstop;
+                    adjustmenttype = PunchAdjustmentType.SHIFT_STOP;
+                }
+
+                else if (originaltimestamp.isBefore(clockout_graceperiod) && (originaltimestamp.isAfter(clockout_dockpenalty) || originaltimestamp.isEqual(clockout_dockpenalty)))
+                {
+                    adjustedtimestamp = clockout_dockpenalty;
+                    adjustmenttype = PunchAdjustmentType.SHIFT_DOCK;
+                }
+
+            }
+            
+        }
+
+        // Has punch already been adjusted?  If so, no need to check more rules
+
+        if (adjustmenttype == null) {
+
+            // round up/down to nearest interval increment?
+
+            int minute = originaltimestamp.getMinute();
+            int interval = s.getRoundInterval();
+
+            if (minute % interval != 0) {
+
+                int adjustedminute = 0;
+
+                if ( (minute % interval) < (interval / 2)) {
+                    adjustedminute = (Math.round(minute / interval) * interval);
+                }
+                else {
+                    adjustedminute = (Math.round(minute / interval) * interval) + interval;
+                }
+
+                adjustedtimestamp = adjustedtimestamp.plusMinutes(adjustedminute - minute);
+                adjustedtimestamp = adjustedtimestamp.withSecond(0).withNano(0);
+
+                adjustmenttype = PunchAdjustmentType.INTERVAL_ROUND;
+
+            }
+            else {
+                adjustedtimestamp = adjustedtimestamp.withSecond(0).withNano(0);
+                adjustmenttype = PunchAdjustmentType.NONE;
+            }
+
+
+        }
+    
+    }
+    
 }
