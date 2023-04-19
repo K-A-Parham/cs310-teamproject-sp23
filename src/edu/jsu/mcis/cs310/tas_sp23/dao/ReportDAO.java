@@ -1,4 +1,4 @@
-import com.github.cliftonlabs.json_simple.JsonArray;
+package edu.jsu.mcis.cs310.tas_sp23.dao;
 import edu.jsu.mcis.cs310.tas_sp23.Badge;
 import edu.jsu.mcis.cs310.tas_sp23.Department;
 import edu.jsu.mcis.cs310.tas_sp23.Employee;
@@ -29,8 +29,11 @@ public class ReportDAO {
 
         JsonArray jsonArray = new JsonArray();
 
+       
         PreparedStatement ps = null;
+       
         ResultSet rs = null;
+        
         boolean hasresults;
 
         try {
