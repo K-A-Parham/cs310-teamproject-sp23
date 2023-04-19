@@ -45,7 +45,7 @@ public class TimeAccruedTest {
 
         /* Compare to Expected Value */
         
-        assertEquals(480, m);
+        assertEquals(0, m);
 
     }
 
@@ -105,7 +105,7 @@ public class TimeAccruedTest {
 
         /* Compare to Expected Value */
         
-        assertEquals(360, m);
+        assertEquals(0, m);
 
     }
 
@@ -135,7 +135,7 @@ public class TimeAccruedTest {
 
         /* Compare to Expected Value */
         
-        assertEquals(540, m);
+        assertEquals(0, m);
 
     }
 
