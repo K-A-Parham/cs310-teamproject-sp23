@@ -5,8 +5,16 @@ import java.time.format.DateTimeFormatter;
 import java.time.*;
 import java.time.temporal.ChronoUnit;
 
+/**
+* <p>A Punch class that represents individual punches.</p>
+* @author Firas Kouki, Cayden Tucker, Makiya Kirby
+*/
 public class Punch {
-   
+    
+    /**
+    *
+    * Instance fields used to get necessary information in the database about punches.
+    */
     private int id; // nullable
     private final int terminalid;
     private final Badge badge;
@@ -24,6 +32,12 @@ public class Punch {
     };
 
     // Constructor for new punches (no ID, original timestamp is current time)
+    /**
+    * <p>This is a constructor that initializes the instance fields with punch information from the database. </p>
+    * @param terminalid terminal id.
+    * @param badge employee's badge.
+    * @param punchtype the type of punch (clock in or clock out).
+    */
     public Punch(int terminalid, Badge badge, EventType punchtype) {
         
         this.terminalid = terminalid;
@@ -33,6 +47,14 @@ public class Punch {
     }
 
     // Constructor for existing punches
+    /**
+    * <p>This is a constructor that initializes the instance fields with punch information from the database. </p>
+    * @param id employee's id.
+    * @param terminalid terminal id.
+    * @param badge employee's badge.
+    * @param originaltimestamp the original timestamp of a punch.
+    * @param punchtype the type of punch (clock in or clock out).
+    */
     public Punch(int id, int terminalid, Badge badge, LocalDateTime originaltimestamp, EventType punchtype) {
         
         this.id = id;
@@ -42,6 +64,10 @@ public class Punch {
         this.punchtype = punchtype;
     }
     
+    /**
+    * <p>These getter methods are used to retrieve punch information from the database.</p>
+    * @return The variables with punch information such as badge id, terminal id, punch type, original timestamp, etc.
+    */
     public int getId() {
         return id;
     }
@@ -62,14 +88,18 @@ public class Punch {
         return originaltimestamp;
     }
     
-    public PunchAdjustmentType getAdjustmenttype() {
+    public PunchAdjustmentType getAdjustmentType() {
         return adjustmenttype;
     }
     
-    public LunchStatus getadjustedlunchstatus() {
+    public LunchStatus getAdjustedLunchStatus() {
         return adjustedlunchstatus;
     }
-  
+    
+    /**
+    * <p>This is a printAdjusted method that builds a toString() of an adjusted punch.</p>
+    * @return The toString() of punch adjusted information.
+    */
     public String printAdjusted() {
         
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
@@ -87,6 +117,10 @@ public class Punch {
         return s.toString();
     }
     
+    /**
+    * <p>This is a printOriginal method that builds a toString() of the original punch.</p>
+    * @return The toString() of the original punch's information.
+    */
     public String printOriginal () {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         String dateText = originaltimestamp.format(formatter);
@@ -103,8 +137,16 @@ public class Punch {
         return s.toString();
     }
     
+    /**
+    * <p>This is an adjust method that accepts a shift object and uses it to create an adjusted timestamp from the original timestamp.</p>
+    * @param s The shift object used to get access to the shift rule set information.
+    */
     public void adjust(Shift s) {
-
+        
+        /**
+        *
+        * Instance fields used to get a timeline from the shift rule set information in the database.
+        */
         LocalDateTime shiftstart, before_shiftstart, graceperiod, dockpenalty, lunchstart, lunchstop;
         LocalDateTime shiftstop, after_shiftstop, clockout_graceperiod, clockout_dockpenalty;
 
@@ -148,7 +190,7 @@ public class Punch {
                     adjustmenttype = PunchAdjustmentType.SHIFT_DOCK;
                 }
 
-                //lunch clock in: might not be correct
+                //lunch clock in
                 else if ((originaltimestamp.isAfter(lunchstart) || originaltimestamp.isEqual(lunchstart)) && originaltimestamp.isBefore(lunchstop))
                 {
                     adjustedtimestamp = lunchstop;
@@ -159,7 +201,7 @@ public class Punch {
 
             else if (punchtype == EventType.CLOCK_OUT) {
 
-                //lunch clock out: might not be correct
+                //lunch clock out
                 if (originaltimestamp.isAfter(lunchstart) && (originaltimestamp.isBefore(lunchstop) || originaltimestamp.isEqual(lunchstop)))
                 {
                     adjustedtimestamp = lunchstart;
