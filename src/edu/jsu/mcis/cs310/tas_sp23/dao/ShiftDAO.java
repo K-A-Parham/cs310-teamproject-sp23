@@ -7,9 +7,16 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-
+/**
+* <p>A ShiftDAO class that creates and populates the model objects from the Shift class and retrieves data from the database.</p>
+* @author Makiya Kirby
+*/
 public class ShiftDAO {
     
+    /**
+    *
+    * Fields/queries used to get necessary information in the database.
+    */
     private static final String QUERY_FIND = "SELECT * FROM shift WHERE id = ?";
     private static final String QUERY_FIND_BY_BADGE = "SELECT * FROM employee WHERE badgeid = ?";
 
@@ -21,6 +28,11 @@ public class ShiftDAO {
 
     }
     
+    /**
+    * <p>This is a find method that finds a shift rule set based on its numeric id.</p>
+    * @param id The id used to find a shift rule set.
+    * @return The shift rule set based on the numeric id.
+    */
     public Shift find(int id) {
         
         Shift shift = null;
@@ -66,7 +78,7 @@ public class ShiftDAO {
                         
                         shift = new Shift(params);
 
-                    } //description, shiftstart, shiftstop, shiftDuration, lunchstart, lunchstop, lunchDuration
+                    }
                     
                 }
                 
@@ -101,6 +113,11 @@ public class ShiftDAO {
         
     }
     
+    /**
+    * <p>This is a find method that accepts an employee badge object and looks up the employee's assigned shift in the database.</p>
+    * @param badge The badge argument that the method accepts and uses to find an assigned shift.
+    * @return The shift rule set based on the employee badge.
+    */
     public Shift find(Badge badge) {
         
         Shift shift = null;
