@@ -57,4 +57,8 @@ public final class DAOFactory {
     public AbsenteeismDAO getAbsenteeismDAO(){
         return new AbsenteeismDAO(this);
     }
+    
+    public ReportDAO getReportDAO() {
+        return new ReportDAO(this);
+    }
 }
